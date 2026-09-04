@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loonie List — Canadian-Made & Canadian-Owned Businesses</title>
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --deep-rose: #D52B1E;
+            --deep-rose-dark: #A81F14;
+            --rose-light: #FDE9E7;
+            --blush: #FBFAF8;
+            --cream: #FFFAF6;
+            --warm-gray: #565452;
+            --text-dark: #241F1E;
+            --white: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--cream);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: var(--deep-rose);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--white);
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+            padding: 0 24px;
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--deep-rose);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--deep-rose);
+            text-decoration: none;
+        }
+
+        .nav-cta {
+            background: var(--deep-rose);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--deep-rose-dark);
+            color: var(--white) !important;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 140px 24px 80px;
+            text-align: center;
+            background: linear-gradient(170deg, var(--blush) 0%, var(--cream) 100%);
+        }
+
+        .hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: var(--rose-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--deep-rose);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--warm-gray);
+            max-width: 540px;
+            margin: 0 auto 32px;
+        }
+
+        /* ===== Pillars ===== */
+        .pillars {
+            background: var(--white);
+            padding: 80px 24px;
+        }
+
+        .pillars .section-inner {
+            text-align: center;
+        }
+
+        .pillars .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-top: 48px;
+        }
+
+        .pillar-card {
+            background: var(--blush);
+            border-radius: 20px;
+            padding: 40px 32px;
+            text-align: left;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--deep-rose);
+        }
+
+        .pillar-icon {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+        }
+
+        .pillar-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .pillar-card p {
+            font-size: 0.97rem;
+            color: var(--warm-gray);
+            margin-bottom: 0;
+        }
+
+        .pillar-badge {
+            display: inline-block;
+            margin-top: 16px;
+            background: var(--deep-rose);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+        }
+
+        /* ===== Voting ===== */
+        .safety-section {
+            background: var(--cream);
+            padding: 80px 24px;
+        }
+
+        .safety-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .safety-text h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            margin-top: 28px;
+        }
+
+        .safety-text h3:first-of-type { margin-top: 0; }
+
+        .safety-text p {
+            font-size: 0.95rem;
+            color: var(--warm-gray);
+        }
+
+        .vote-demo {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 24px rgba(213, 43, 30, 0.08);
+        }
+
+        .vote-demo-business {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--rose-light);
+            margin-bottom: 20px;
+        }
+
+        .vote-demo-avatar {
+            width: 52px;
+            height: 52px;
+            background: var(--rose-light);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .vote-demo-name {
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .vote-demo-cat {
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+        }
+
+        .vote-demo-badge {
+            margin-left: auto;
+            background: var(--rose-light);
+            color: var(--deep-rose);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .vote-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .vote-label {
+            font-size: 0.93rem;
+            color: var(--warm-gray);
+        }
+
+        .vote-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .vote-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .vote-btn-up {
+            border-color: var(--deep-rose);
+            background: var(--deep-rose);
+            color: var(--white);
+        }
+
+        .vote-btn-down {
+            border-color: var(--rose-light);
+            background: var(--white);
+            color: var(--warm-gray);
+        }
+
+        .vote-count {
+            margin-top: 14px;
+            font-size: 0.85rem;
+            color: var(--deep-rose);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .pillar-grid { grid-template-columns: 1fr; }
+            .safety-grid { grid-template-columns: 1fr; }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn:hover {
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: var(--deep-rose);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-rose-dark);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--deep-rose);
+            border: 2px solid var(--deep-rose);
+        }
+
+        .btn-secondary:hover {
+            background: var(--rose-light);
+            color: var(--deep-rose);
+        }
+
+        /* ===== Section Shared ===== */
+        section {
+            padding: 80px 24px;
+        }
+
+        .section-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--deep-rose);
+            background: var(--rose-light);
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--warm-gray);
+            max-width: 560px;
+            margin-bottom: 48px;
+        }
+
+        /* ===== How It Works ===== */
+        .how-it-works {
+            background: var(--white);
+        }
+
+        .how-it-works .section-inner {
+            text-align: center;
+        }
+
+        .how-it-works .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .step {
+            padding: 32px 24px;
+            border-radius: 16px;
+            background: var(--blush);
+            transition: transform 0.2s;
+        }
+
+        .step:hover {
+            transform: translateY(-4px);
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            background: var(--deep-rose);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .step p {
+            font-size: 0.95rem;
+            color: var(--warm-gray);
+        }
+
+        /* ===== For Business Owners ===== */
+        .for-owners {
+            background: var(--cream);
+        }
+
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .tier-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, transform 0.2s;
+            position: relative;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .tier-card.featured {
+            border-color: var(--deep-rose);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--deep-rose);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 14px;
+            border-radius: 20px;
+        }
+
+        .tier-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .tier-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--deep-rose);
+            margin-bottom: 16px;
+        }
+
+        .tier-price span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--warm-gray);
+        }
+
+        .tier-features {
+            list-style: none;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .tier-features li {
+            padding: 6px 0;
+            font-size: 0.93rem;
+            color: var(--warm-gray);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .tier-features li::before {
+            content: "\2713";
+            color: var(--deep-rose);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .tier-card .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 48px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-logo span {
+            color: var(--rose-light);
+        }
+
+        footer a {
+            color: var(--rose-light);
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        /* ===== Mobile Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+            }
+
+            section {
+                padding: 56px 20px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .tiers {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .tier-card.featured {
+                order: -1;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <div class="logo">Loonie<span>List</span></div>
+            <ul class="nav-links">
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#for-owners">For Business Owners</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="nav-cta">Get the App</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-icon">&#x1F341;</div>
+            <h1>Discover <em>Canadian-made and Canadian-owned</em> businesses near you</h1>
+            <p>Discover, support, and shop local. Loonie List makes it easy to find small Canadian businesses, organized by category — not buried in a search engine.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Download the App</a>
+                <a href="#for-owners" class="btn btn-secondary">List Your Business</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two Pillars -->
+    <section class="pillars" id="pillars">
+        <div class="section-inner">
+            <span class="section-label">What We Stand For</span>
+            <h2 class="section-title">Two ways Loonie List helps you shop confidently</h2>
+            <p class="section-subtitle">Whether independently verified or community-recommended, Loonie List helps you make confident choices about who to support.</p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">&#x1F341;</div>
+                    <h3>Verified Canadian Businesses</h3>
+                    <p>Every listing is cross-checked against an independent public source — like the business's own website or an official registry — before it's marked verified. We don't just take one list's word for it.</p>
+                    <span class="pillar-badge">&#x2714; Verified</span>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">&#x1F44D;</div>
+                    <h3>Community-Recommended</h3>
+                    <p>Any business that shoppers in our community have consistently rated as great to buy from. Earned through real votes from real customers.</p>
+                    <span class="pillar-badge">&#x1F44D; Community-Recommended</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-inner">
+            <span class="section-label">How It Works</span>
+            <h2 class="section-title">Three simple steps</h2>
+            <p class="section-subtitle">Finding and supporting Canadian businesses has never been easier.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Search</h3>
+                    <p>Browse by category, city, or province to find Canadian businesses near you or across the country.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Discover</h3>
+                    <p>Explore business profiles with descriptions, contact info, and shipping details.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Connect</h3>
+                    <p>Reach out directly by phone, email, or website. Support Canadian businesses with every purchase.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voting -->
+    <section class="safety-section" id="safety">
+        <div class="section-inner">
+            <span class="section-label">Community Voting</span>
+            <h2 class="section-title">Your voice shapes the directory</h2>
+            <p class="section-subtitle">Logged-in members can vote on any business. Recommendations are visible on listings and help other shoppers decide with confidence.</p>
+
+            <div class="safety-grid">
+                <div class="safety-text">
+                    <h3>&#x1F44D; Recommend</h3>
+                    <p>Had a great experience? Recommend the business. Once a business reaches 5 recommendations from our community, they earn the <strong>Community-Recommended</strong> badge on their listing.</p>
+
+                    <h3>&#x1F44E; Not Great</h3>
+                    <p>Had a disappointing experience? Your vote is recorded privately — it's never shown publicly on a business's listing, but it factors into whether that business earns the Community-Recommended badge.</p>
+                </div>
+
+                <div class="vote-demo">
+                    <div class="vote-demo-business">
+                        <div class="vote-demo-avatar">&#x1F9E3;</div>
+                        <div>
+                            <div class="vote-demo-name">Kingston Fine Carpentry</div>
+                            <div class="vote-demo-cat">Tools &amp; Hardware &middot; Kingston, ON</div>
+                        </div>
+                        <div class="vote-demo-badge">&#x2714; Community-Recommended</div>
+                    </div>
+                    <div class="vote-row">
+                        <span class="vote-label">Was this a great business to shop with?</span>
+                    </div>
+                    <div class="vote-buttons" style="margin-top: 14px;">
+                        <button class="vote-btn vote-btn-up">&#x1F44D; Recommend</button>
+                        <button class="vote-btn vote-btn-down">&#x1F44E; Not Great</button>
+                    </div>
+                    <div class="vote-count">&#x1F341; 12 people have recommended this business</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Business Owners -->
+    <section class="for-owners" id="for-owners">
+        <div class="section-inner">
+            <span class="section-label">For Business Owners</span>
+            <h2 class="section-title">Get discovered by shoppers looking to buy Canadian</h2>
+            <p class="section-subtitle">List your business for free or upgrade for enhanced visibility and premium features.</p>
+
+            <div class="tiers">
+                <div class="tier-card">
+                    <h3>Free</h3>
+                    <div class="tier-price">$0 <span>/ month</span></div>
+                    <ul class="tier-features">
+                        <li>Basic business listing</li>
+                        <li>Business name and category</li>
+                        <li>City and province</li>
+                        <li>Contact information</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Get Started Free</a>
+                </div>
+
+                <div class="tier-card featured">
+                    <div class="tier-badge">Most Popular</div>
+                    <h3>Standard</h3>
+                    <div class="tier-price">$9 <span>/ month</span></div>
+                    <ul class="tier-features">
+                        <li>Everything in Free</li>
+                        <li>Verified badge</li>
+                        <li>Priority in search results</li>
+                        <li>Business description</li>
+                        <li>Website link</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">Choose Standard</a>
+                </div>
+
+                <div class="tier-card">
+                    <h3>Premium</h3>
+                    <div class="tier-price">$24 <span>/ month</span></div>
+                    <ul class="tier-features">
+                        <li>Everything in Standard</li>
+                        <li>Featured on Discover page</li>
+                        <li>Analytics dashboard</li>
+                        <li>Photo gallery</li>
+                        <li>Customer reviews</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Choose Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-logo">Loonie<span>List</span></div>
+                <p style="margin-top: 4px; font-size: 0.85rem;">Supporting small Canadian businesses, organized by category.</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="mailto:hello@loonielist.ca">hello@loonielist.ca</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#for-owners">For Business Owners</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div style="max-width: 1120px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.82rem;">
+            &copy; 2026 Loonie List by FlyFinder. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
